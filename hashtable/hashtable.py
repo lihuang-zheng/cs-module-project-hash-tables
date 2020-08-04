@@ -38,6 +38,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        return self.capacity
 
     def get_load_factor(self):
         """
@@ -46,6 +47,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        return self.count / self.capacity
 
     def fnv1(self, key):
         """
@@ -166,6 +168,17 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        old_table = self.data
+        self.capacity = new_capacity
+        self.data = [None] * new_capacity
+
+        for entry in range(len(old_table)):
+            old = old_table[entry]
+            if old:
+                while old:
+                    if old.key:
+                        self.put(old.key, old.value)
+                        old = old.next
 
 
 if __name__ == "__main__":
